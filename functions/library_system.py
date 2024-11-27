@@ -24,6 +24,17 @@ def search_book(title):
     :return: A dictionary with the book's details if found, else None
     """
     # TODO: Implement logic to search for a book in the database file
+    with open(DATABASE_FILE, 'r') as f:
+        content = f.readlines()
+
+        books = {}
+        
+        for line in content[1:]:
+            book = line.strip().split(',')
+            if title == book[0]:
+                books[title] = book[1]
+
+        print(books)
 
 def list_books():
     """
@@ -35,3 +46,4 @@ def list_books():
 
 
 # add_book('The book of secrets', 'Osho')
+search_book('The power of now')
