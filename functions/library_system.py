@@ -42,8 +42,19 @@ def list_books():
     :return: A list of dictionaries with each book's details
     """
     # TODO: Read all books from the database file and return them as a list of dictionaries
+    with open(DATABASE_FILE, 'r') as f:
+        content = f.readlines()
+
+    all_books = {}
+
+    for line in content[1:]:
+        book = line.strip().split(',')
+        all_books[book[0]] = book[1]
+
+    print(all_books)
 
 
 
 # add_book('The book of secrets', 'Osho')
 search_book('The power of now')
+list_books()
